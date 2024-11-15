@@ -9,7 +9,6 @@ import leaveRouter from "./routes/LeaveRoutes.js";
 import settingRouter from "./routes/settingRoutes.js";
 import adminDashboardRouter from "./routes/adminDashboardRoutes.js";
 import { connectData } from "./db/database.js";
-import { admin, dashboard, department, employee, leave, salary, setting } from "./utils/commonUtils.js";
 
 const PORT = process.env.PORT;
 
@@ -21,21 +20,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
-  origin: 'https://emp-management-frontend-tau.vercel.app', // frontend URL
-  methods: 'GET,POST,PUT,DELETE',
-  credentials: true,
+  origin: "https://emp-management-frontend-tau.vercel.app", // Your frontend origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
+  credentials: true, // Allow cookies if needed
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions))
+// app.options("*", cors(corsOptions))
 
-app.use("/auth", authRouter);
-app.use("/department", departementRouter);
-app.use("/employee", employeeRouter);
-app.use("/salary", salaryRouter);
-app.use("/leave", leaveRouter);
-app.use("/setting", settingRouter);
-app.use("/dashboard", adminDashboardRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/department", departementRouter);
+app.use("/api/employee", employeeRouter);
+app.use("/api/salary", salaryRouter);
+app.use("/api/leave", leaveRouter);
+app.use("/api/setting", settingRouter);
+app.use("/api/dashboard", adminDashboardRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
