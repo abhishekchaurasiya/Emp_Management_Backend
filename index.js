@@ -29,14 +29,13 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions))
 
-// /dev/api/v1/auth
-app.use(admin, authRouter);
-app.use(department, departementRouter);
-app.use(employee, employeeRouter);
-app.use(salary, salaryRouter);
-app.use(leave, leaveRouter);
-app.use(setting, settingRouter);
-app.use(dashboard, adminDashboardRouter);
+app.use("/auth", authRouter);
+app.use("/department", departementRouter);
+app.use("/employee", employeeRouter);
+app.use("/salary", salaryRouter);
+app.use("/leave", leaveRouter);
+app.use("/setting", settingRouter);
+app.use("/dashboard", adminDashboardRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
