@@ -19,10 +19,15 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: `https://emp-management-frontend-tau.vercel.app`,
-  credentials: true
-}));
+
+const corsOptions = {
+  origin: 'https://emp-management-frontend-tau.vercel.app', // frontend URL
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions))
 
 // /dev/api/v1/auth
 app.use(admin, authRouter);
