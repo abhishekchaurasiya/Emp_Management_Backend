@@ -32,7 +32,7 @@ const dashboardApi = "/dashboard";
 // API Endpoints
 const BASEPREFIX = process.env.BASE_PREFIX;
 const APPVERSION = process.env.APP_VERSION;
-console.log(BASEPREFIX + APPVERSION)
+
 
 // endpoint = /dev/api/v1/auth
 export const admin = BASEPREFIX + APPVERSION + adminApi;
