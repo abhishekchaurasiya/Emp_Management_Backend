@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Your frontend origin
+  origin: "https://emp-management-frontend-tau.vercel.app", // Your frontend origin
   // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
   credentials: true, // Allow cookies if needed
 };
