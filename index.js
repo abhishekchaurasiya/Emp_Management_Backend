@@ -1,7 +1,8 @@
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
-import authRouter from "./routes//authRoutes.js";
+
+import authRouter from "./routes/authRoutes.js";
 import departementRouter from "./routes/departmentRoutes.js";
 import employeeRouter from "./routes/employeeRoutes.js";
 import salaryRouter from "./routes/salaryRoutes.js";
@@ -10,12 +11,11 @@ import settingRouter from "./routes/settingRoutes.js";
 import adminDashboardRouter from "./routes/adminDashboardRoutes.js";
 import { connectData } from "./db/database.js";
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 connectData();
 
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -26,14 +26,13 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps, curl, etc.)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true, // Allow cookies if needed
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -46,12 +45,10 @@ app.use("/api/leave", leaveRouter);
 app.use("/api/setting", settingRouter);
 app.use("/api/dashboard", adminDashboardRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on PORT ${PORT}`);
-});
-
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
   res.json("Server is running");
 });
 
-// password: Abhi123@#
+app.listen(PORT, () => {
+  console.log(`Server is running on PORT ${PORT}`);
+});
