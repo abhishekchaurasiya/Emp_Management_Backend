@@ -44,7 +44,6 @@ export const userRegister = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
     const newUser = new User({
       name,
       email,
@@ -118,3 +117,4 @@ export const verify = (req, res) => {
   // return res.status(200).json({ success: true, user: req.user, token: req.token })
   return res.status(200).json({ success: true, user: req.user });
 };
+
